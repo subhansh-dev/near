@@ -50,8 +50,6 @@ a visitor counter stored in localStorage that increments each visit.
 ### section decorations
 every section has goth dressings... crosses (✝ and ✖), thin diagonal scratch lines, faint blue stain dots, tiny 3px dot markers, spider webs drawn in CSS in all 4 corners, and one spider per section. all at 2-6% opacity so they read as background texture. thin gradient dividers between each section.
 
-![mobile view](screenshot-mobile.png)
-
 ## responsive
 - custom cursor hidden on mobile
 - hamburger menu replaces nav links
