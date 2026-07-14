@@ -11,42 +11,74 @@
 </head>
 <body>
 
+<div class="loader" id="loader">
+    <div class="loader-inner">
+        <div class="loader-piano">
+            <div class="loader-key lk-1"></div>
+            <div class="loader-key lk-2"></div>
+            <div class="loader-key lk-3"></div>
+            <div class="loader-key lk-4"></div>
+            <div class="loader-key lk-5"></div>
+            <div class="loader-key lk-6"></div>
+            <div class="loader-key lk-7"></div>
+        </div>
+        <div class="loader-text">loading</div>
+    </div>
+</div>
+
+<div class="cursor" id="cursor"></div>
+<div class="cursor-trail" id="cursor-trail"></div>
 <div class="grain"></div>
 <div class="vignette"></div>
 
 <nav class="navbar">
     <div class="nav-inner">
-        <a href="#home" class="nav-logo">&#9760;</a>
+        <a href="#home" class="nav-logo" data-magnetic>&#9760;</a>
         <div class="nav-links">
-            <a href="#home">home</a>
-            <a href="#about">about</a>
-            <a href="#hobbies">hobbies</a>
-            <a href="#projects">work</a>
-            <a href="#music">music</a>
-            <a href="#contact">contact</a>
+            <a href="#home" data-magnetic>home</a>
+            <a href="#about" data-magnetic>about</a>
+            <a href="#hobbies" data-magnetic>hobbies</a>
+            <a href="#projects" data-magnetic>work</a>
+            <a href="#music" data-magnetic>music</a>
+            <a href="#gallery" data-magnetic>gallery</a>
+            <a href="#contact" data-magnetic>contact</a>
         </div>
+        <button class="nav-toggle" id="nav-toggle" aria-label="menu">
+            <span></span><span></span><span></span>
+        </button>
     </div>
 </nav>
+
+<div class="mobile-menu" id="mobile-menu">
+    <a href="#home">home</a>
+    <a href="#about">about</a>
+    <a href="#hobbies">hobbies</a>
+    <a href="#projects">work</a>
+    <a href="#music">music</a>
+    <a href="#gallery">gallery</a>
+    <a href="#contact">contact</a>
+</div>
 
 <section id="home" class="hero">
     <div class="hero-bg">
         <img src="images/hero-bg.jpg" alt="" class="hero-bg-img">
         <div class="hero-overlay"></div>
     </div>
+    <canvas id="hero-canvas" class="hero-canvas"></canvas>
     <div class="hero-floating-images">
-        <div class="hero-float hf-1"><img src="images/hero-1.jpg" alt=""></div>
-        <div class="hero-float hf-2"><img src="images/hero-2.jpg" alt=""></div>
-        <div class="hero-float hf-3"><img src="images/hero-3.jpg" alt=""></div>
-        <div class="hero-float hf-4"><img src="images/hero-4.jpg" alt=""></div>
-        <div class="hero-float hf-5"><img src="images/hero-5.jpg" alt=""></div>
-        <div class="hero-float hf-6"><img src="images/hero-6.jpg" alt=""></div>
+        <div class="hero-float hf-1" data-depth="0.03"><img src="images/hero-1.jpg" alt=""></div>
+        <div class="hero-float hf-2" data-depth="0.05"><img src="images/hero-2.jpg" alt=""></div>
+        <div class="hero-float hf-3" data-depth="0.04"><img src="images/hero-3.jpg" alt=""></div>
+        <div class="hero-float hf-4" data-depth="0.06"><img src="images/hero-4.jpg" alt=""></div>
+        <div class="hero-float hf-5" data-depth="0.02"><img src="images/hero-5.jpg" alt=""></div>
+        <div class="hero-float hf-6" data-depth="0.04"><img src="images/hero-6.jpg" alt=""></div>
     </div>
     <div class="hero-content">
-        <div class="hero-tag">pianist / flautist / builder</div>
-        <h1 class="hero-name">
+        <div class="hero-tag" id="hero-tag"></div>
+        <h1 class="hero-name glitch" data-text="SUBH">
             <span>S</span><span>U</span><span>B</span><span>H</span>
         </h1>
-        <h1 class="hero-name hero-name-2">
+        <h1 class="hero-name hero-name-2 glitch" data-text="ANSH">
             <span>A</span><span>N</span><span>S</span><span>H</span>
         </h1>
         <div class="hero-divider">
@@ -55,10 +87,13 @@
             <span class="divider-line"></span>
         </div>
         <p class="hero-sub">i build things. i play keys. i breathe music.</p>
-        <a href="#about" class="hero-arrow">&#8595;</a>
+        <a href="#about" class="hero-arrow" data-magnetic>&#8595;</a>
     </div>
     <div class="hero-side-text left">EST. 2009</div>
     <div class="hero-side-text right">17 Y/O</div>
+    <div class="hero-scroll-progress">
+        <div class="scroll-progress-bar" id="scroll-progress"></div>
+    </div>
 </section>
 
 <section id="about" class="section about-section">
@@ -68,9 +103,10 @@
     </div>
     <div class="about-layout">
         <div class="about-image-col">
-            <div class="about-image-frame">
+            <div class="about-image-frame" data-tilt>
                 <img src="images/about-bg.jpg" alt="" class="about-img">
                 <div class="about-image-border"></div>
+                <div class="about-image-glitch"></div>
             </div>
         </div>
         <div class="about-text-col">
@@ -83,16 +119,16 @@
                 <p>i build autonomous AI systems, compilers, distributed consensus engines, and desktop environments for the web. mostly rust and python. always shipping.</p>
             </div>
             <div class="about-stats">
-                <div class="stat">
-                    <span class="stat-num">5</span>
+                <div class="stat" data-count="5">
+                    <span class="stat-num">0</span>
                     <span class="stat-label">projects shipped</span>
                 </div>
-                <div class="stat">
-                    <span class="stat-num">2</span>
+                <div class="stat" data-count="2">
+                    <span class="stat-num">0</span>
                     <span class="stat-label">instruments</span>
                 </div>
-                <div class="stat">
-                    <span class="stat-num">1</span>
+                <div class="stat" data-count="1">
+                    <span class="stat-num">0</span>
                     <span class="stat-label">language learning</span>
                 </div>
             </div>
@@ -104,19 +140,19 @@
     <div class="section-label">002</div>
     <h2 class="section-title">hobbies</h2>
     <div class="hobbies-scattered">
-        <div class="hobby-window hw-1">
+        <div class="hobby-window hw-1" data-tilt>
             <img src="images/piano.png" alt="piano">
             <span class="hw-label">piano</span>
         </div>
-        <div class="hobby-window hw-2">
+        <div class="hobby-window hw-2" data-tilt>
             <img src="images/flute.png" alt="flute">
             <span class="hw-label">flute</span>
         </div>
-        <div class="hobby-window hw-3">
+        <div class="hobby-window hw-3" data-tilt>
             <img src="images/gallery1.jpg" alt="">
             <span class="hw-label">basketball</span>
         </div>
-        <div class="hobby-window hw-4">
+        <div class="hobby-window hw-4" data-tilt>
             <img src="images/gallery2.jpg" alt="">
             <span class="hw-label">badminton</span>
         </div>
@@ -147,9 +183,8 @@
             <p>currently learning. &#12371;&#12435;&#12395;&#12385;&#12399; world. one kanji at a time.</p>
         </div>
     </div>
-    </div>
     <div class="hobbies-text-float">
-        <p>western classical piano & flute. regional basketball. badminton. sketching. learning japanese. building software.</p>
+        <p>western classical piano &amp; flute. regional basketball. badminton. sketching. learning japanese. building software.</p>
     </div>
 </section>
 
@@ -161,7 +196,7 @@
     <div class="section-label">003</div>
     <h2 class="section-title">projects</h2>
     <div class="projects-list">
-        <a href="https://github.com/subhansh-dev/rumi" target="_blank" class="project-row">
+        <a href="https://github.com/subhansh-dev/rumi" target="_blank" class="project-row" data-tilt>
             <div class="project-left">
                 <span class="project-num">01</span>
                 <div class="project-info">
@@ -174,7 +209,7 @@
                 <span class="project-arrow">&rarr;</span>
             </div>
         </a>
-        <a href="https://github.com/subhansh-dev/fabric" target="_blank" class="project-row">
+        <a href="https://github.com/subhansh-dev/fabric" target="_blank" class="project-row" data-tilt>
             <div class="project-left">
                 <span class="project-num">02</span>
                 <div class="project-info">
@@ -187,7 +222,7 @@
                 <span class="project-arrow">&rarr;</span>
             </div>
         </a>
-        <a href="https://github.com/subhansh-dev/Friday-Autonomous-Cognitive-AI-Operating-System" target="_blank" class="project-row">
+        <a href="https://github.com/subhansh-dev/Friday-Autonomous-Cognitive-AI-Operating-System" target="_blank" class="project-row" data-tilt>
             <div class="project-left">
                 <span class="project-num">03</span>
                 <div class="project-info">
@@ -200,7 +235,7 @@
                 <span class="project-arrow">&rarr;</span>
             </div>
         </a>
-        <a href="https://github.com/subhansh-dev/mewoos" target="_blank" class="project-row">
+        <a href="https://github.com/subhansh-dev/mewoos" target="_blank" class="project-row" data-tilt>
             <div class="project-left">
                 <span class="project-num">04</span>
                 <div class="project-info">
@@ -212,7 +247,7 @@
                 <span class="project-arrow">&rarr;</span>
             </div>
         </a>
-        <a href="https://github.com/subhansh-dev/raft-rs" target="_blank" class="project-row">
+        <a href="https://github.com/subhansh-dev/raft-rs" target="_blank" class="project-row" data-tilt>
             <div class="project-left">
                 <span class="project-num">05</span>
                 <div class="project-info">
@@ -230,28 +265,92 @@
 <section id="music" class="section music-section">
     <div class="section-label">004</div>
     <h2 class="section-title">music</h2>
+    <div class="music-visualizer" id="music-visualizer">
+        <div class="viz-bar"></div><div class="viz-bar"></div><div class="viz-bar"></div>
+        <div class="viz-bar"></div><div class="viz-bar"></div><div class="viz-bar"></div>
+        <div class="viz-bar"></div><div class="viz-bar"></div><div class="viz-bar"></div>
+        <div class="viz-bar"></div><div class="viz-bar"></div><div class="viz-bar"></div>
+        <div class="viz-bar"></div><div class="viz-bar"></div><div class="viz-bar"></div>
+        <div class="viz-bar"></div><div class="viz-bar"></div><div class="viz-bar"></div>
+        <div class="viz-bar"></div><div class="viz-bar"></div><div class="viz-bar"></div>
+        <div class="viz-bar"></div><div class="viz-bar"></div><div class="viz-bar"></div>
+    </div>
     <div class="music-scattered">
-        <div class="music-window mw-1">
+        <div class="music-window mw-1" data-tilt>
             <img src="images/gallery1.jpg" alt="">
         </div>
-        <div class="music-window mw-2">
+        <div class="music-window mw-2" data-tilt>
             <img src="images/gallery2.jpg" alt="">
         </div>
-        <div class="music-window mw-3">
+        <div class="music-window mw-3" data-tilt>
             <img src="images/gallery3.jpg" alt="">
         </div>
-        <div class="music-window mw-4">
+        <div class="music-window mw-4" data-tilt>
             <img src="images/music-bg.jpg" alt="">
         </div>
     </div>
     <div class="music-layout">
         <div class="music-left">
             <p class="music-quote">"music is the shorthand of emotion"</p>
+            <div class="mini-piano" id="mini-piano">
+                <div class="piano-key white-key" data-note="C4"></div>
+                <div class="piano-key black-key" data-note="C#4"></div>
+                <div class="piano-key white-key" data-note="D4"></div>
+                <div class="piano-key black-key" data-note="D#4"></div>
+                <div class="piano-key white-key" data-note="E4"></div>
+                <div class="piano-key white-key" data-note="F4"></div>
+                <div class="piano-key black-key" data-note="F#4"></div>
+                <div class="piano-key white-key" data-note="G4"></div>
+                <div class="piano-key black-key" data-note="G#4"></div>
+                <div class="piano-key white-key" data-note="A4"></div>
+                <div class="piano-key black-key" data-note="A#4"></div>
+                <div class="piano-key white-key" data-note="B4"></div>
+                <div class="piano-key white-key" data-note="C5"></div>
+            </div>
         </div>
         <div class="music-right">
-            <div class="spotify-wrapper">
+            <div class="spotify-wrapper" data-tilt>
                 <iframe src="https://open.spotify.com/embed/playlist/1ytAAgpiTIgfGxPZiNLSdK?utm_source=generator&si=291425bb82df4378" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>
             </div>
+        </div>
+    </div>
+</section>
+
+<section id="gallery" class="section gallery-section">
+    <div class="section-label">005</div>
+    <h2 class="section-title">gallery</h2>
+    <div class="gallery-grid">
+        <div class="gallery-item gi-1" data-tilt>
+            <img src="images/hero-1.jpg" alt="">
+            <div class="gallery-overlay"><span>keys</span></div>
+        </div>
+        <div class="gallery-item gi-2" data-tilt>
+            <img src="images/hero-2.jpg" alt="">
+            <div class="gallery-overlay"><span>stage</span></div>
+        </div>
+        <div class="gallery-item gi-3" data-tilt>
+            <img src="images/hero-3.jpg" alt="">
+            <div class="gallery-overlay"><span>vibes</span></div>
+        </div>
+        <div class="gallery-item gi-4" data-tilt>
+            <img src="images/hero-4.jpg" alt="">
+            <div class="gallery-overlay"><span>moment</span></div>
+        </div>
+        <div class="gallery-item gi-5" data-tilt>
+            <img src="images/hero-5.jpg" alt="">
+            <div class="gallery-overlay"><span>flow</span></div>
+        </div>
+        <div class="gallery-item gi-6" data-tilt>
+            <img src="images/hero-6.jpg" alt="">
+            <div class="gallery-overlay"><span>soul</span></div>
+        </div>
+        <div class="gallery-item gi-7" data-tilt>
+            <img src="images/gallery3.jpg" alt="">
+            <div class="gallery-overlay"><span>space</span></div>
+        </div>
+        <div class="gallery-item gi-8" data-tilt>
+            <img src="images/music-bg.jpg" alt="">
+            <div class="gallery-overlay"><span>sound</span></div>
         </div>
     </div>
 </section>
@@ -262,21 +361,34 @@
         <div class="contact-overlay"></div>
     </div>
     <div class="contact-inner">
-        <div class="section-label">005</div>
+        <div class="section-label">006</div>
         <h2 class="section-title">find me</h2>
         <div class="contact-links">
-            <a href="https://github.com/subhansh-dev" target="_blank" class="contact-card">
+            <a href="https://github.com/subhansh-dev" target="_blank" class="contact-card" data-magnetic data-tilt>
                 <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 3.492.997.107-.775.418-1.305.762-1.604-2.665-.305-5.467-1.334-5.467-5.931 0-1.311.469-2.381 1.236-3.221-.124-.303-.535-1.524.117-3.176 0 0 1.008-.322 3.301 1.23.957-.266 1.983-.399 3.003-.404 1.02.005 2.047.138 3.006.404 2.291-1.552 3.297-1.23 3.297-1.23.653 1.653.242 2.874.118 3.176.77.84 1.235 1.911 1.235 3.221 0 4.609-2.807 5.624-5.479 5.921.43.372.823 1.102.823 2.222v3.293c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"/></svg>
                 <span>github</span>
             </a>
-            <a href="https://discord.com/users/nernearr" target="_blank" class="contact-card">
+            <a href="https://discord.com/users/nernearr" target="_blank" class="contact-card" data-magnetic data-tilt>
                 <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M20.317 4.3698a19.7913 19.7913 0 00-4.8851-1.5152.0741.0741 0 00-.0785.0371c-.211.3753-.4447.8648-.6083 1.2495-1.8447-.2762-3.68-.2762-5.4868 0-.1636-.3933-.4058-.8742-.6177-1.2495a.077.077 0 00-.0785-.037 19.7363 19.7363 0 00-4.8852 1.515.0699.0699 0 00-.0321.0277C.5334 9.0458-.319 13.5799.0992 18.0578a.0824.0824 0 00.0312.0561c2.0528 1.5076 4.0413 2.4228 5.9929 3.0294a.0777.0777 0 00.0842-.0276c.4616-.6304.8731-1.2952 1.226-1.9942a.076.076 0 00-.0416-.1057c-.6528-.2476-1.2743-.5495-1.8722-.8923a.077.077 0 01-.0076-.1277c.1258-.0943.2517-.1923.3718-.2914a.0743.0743 0 01.0776-.0105c3.9278 1.7933 8.18 1.7933 12.0614 0a.0739.0739 0 01.0785.0095c.1202.099.246.1981.3728.2924a.077.077 0 01-.0066.1276 12.2986 12.2986 0 01-1.873.8914.0766.0766 0 00-.0407.1067c.3604.698.7719 1.3628 1.225 1.9932a.076.076 0 00.0842.0286c1.961-.6067 3.9495-1.5219 6.0023-3.0294a.077.077 0 00.0313-.0552c.5004-5.177-.8382-9.6739-3.5485-13.6604a.061.061 0 00-.0312-.0286zM8.02 15.3312c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9555-2.4189 2.157-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.9555 2.4189-2.1569 2.4189zm7.9748 0c-1.1825 0-2.1569-1.0857-2.1569-2.419 0-1.3332.9554-2.4189 2.1569-2.4189 1.2108 0 2.1757 1.0952 2.1568 2.419 0 1.3332-.946 2.4189-2.1568 2.4189z"/></svg>
                 <span>discord</span>
             </a>
-            <a href="mailto:subhansh.dev@gmail.com" class="contact-card">
+            <a href="mailto:subhansh.dev@gmail.com" class="contact-card" data-magnetic data-tilt>
                 <svg viewBox="0 0 24 24" width="28" height="28" fill="currentColor"><path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
                 <span>email</span>
             </a>
+        </div>
+        <div class="contact-terminal">
+            <div class="terminal-header">
+                <span class="terminal-dot td-1"></span>
+                <span class="terminal-dot td-2"></span>
+                <span class="terminal-dot td-3"></span>
+                <span class="terminal-title">subhansh@dev:~$</span>
+            </div>
+            <div class="terminal-body">
+                <div class="terminal-line" id="terminal-line-1"></div>
+                <div class="terminal-line" id="terminal-line-2"></div>
+                <div class="terminal-line" id="terminal-line-3"></div>
+            </div>
         </div>
     </div>
 </section>
