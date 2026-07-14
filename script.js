@@ -63,7 +63,7 @@ function setupNavScroll() {
 }
 
 function setupHobbyDrag() {
-    var windows = document.querySelectorAll('.hobby-window, .music-window');
+    var windows = document.querySelectorAll('.hobby-window, .music-window, .hero-float');
     windows.forEach(function(win) {
         var startX, startY, origX, origY, dragging = false;
         win.addEventListener('mousedown', function(e) {
