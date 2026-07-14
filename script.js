@@ -3,6 +3,7 @@ document.addEventListener('DOMContentLoaded', function() {
     setupSmoothScroll();
     setupScrollReveal();
     setupNavScroll();
+    setupHobbyDrag();
 });
 
 function setupVisitorCounter() {
@@ -32,37 +33,67 @@ function setupSmoothScroll() {
 }
 
 function setupScrollReveal() {
-    var items = document.querySelectorAll('.about-image-frame, .about-desc, .about-stats, .hobby-card, .project-row, .gallery-item, .contact-link');
+    var items = document.querySelectorAll('.about-image-frame, .about-desc, .about-stats, .hobby-window, .project-row, .music-window, .music-quote, .contact-link');
     var observer = new IntersectionObserver(function(entries) {
         entries.forEach(function(entry) {
             if (entry.isIntersecting) {
-                entry.target.classList.add('revealed');
+                entry.target.style.opacity = '1';
+                entry.target.style.transform = 'translateY(0)';
             }
         });
-    }, { threshold: 0.1, rootMargin: '0px 0px -40px 0px' });
+    }, { threshold: 0.05, rootMargin: '0px 0px -20px 0px' });
 
     items.forEach(function(item, index) {
         item.style.opacity = '0';
-        item.style.transform = 'translateY(16px)';
-        item.style.transition = 'opacity 0.7s ease ' + (index % 4) * 0.1 + 's, transform 0.7s ease ' + (index % 4) * 0.1 + 's';
+        item.style.transform = 'translateY(12px)';
+        item.style.transition = 'opacity 0.6s ease ' + (index % 5) * 0.08 + 's, transform 0.6s ease ' + (index % 5) * 0.08 + 's';
         observer.observe(item);
     });
-
-    var style = document.createElement('style');
-    style.textContent = '.revealed { opacity: 1 !important; transform: translateY(0) !important; }';
-    document.head.appendChild(style);
 }
 
 function setupNavScroll() {
     var navbar = document.querySelector('.navbar');
-    var lastScroll = 0;
     window.addEventListener('scroll', function() {
-        var currentScroll = window.pageYOffset;
-        if (currentScroll > 100) {
+        if (window.pageYOffset > 100) {
             navbar.style.background = 'rgba(5, 5, 5, 0.95)';
         } else {
             navbar.style.background = 'rgba(5, 5, 5, 0.9)';
         }
-        lastScroll = currentScroll;
+    });
+}
+
+function setupHobbyDrag() {
+    var windows = document.querySelectorAll('.hobby-window, .music-window');
+    windows.forEach(function(win) {
+        var startX, startY, origX, origY, dragging = false;
+        win.addEventListener('mousedown', function(e) {
+            if (e.target.tagName === 'A') return;
+            dragging = true;
+            startX = e.clientX;
+            startY = e.clientY;
+            var rect = win.getBoundingClientRect();
+            var parentRect = win.parentElement.getBoundingClientRect();
+            origX = rect.left - parentRect.left;
+            origY = rect.top - parentRect.top;
+            win.style.transition = 'none';
+            win.style.zIndex = '20';
+            e.preventDefault();
+        });
+        document.addEventListener('mousemove', function(e) {
+            if (!dragging) return;
+            var dx = e.clientX - startX;
+            var dy = e.clientY - startY;
+            win.style.transform = 'translate(' + dx + 'px, ' + dy + 'px) scale(1.05)';
+        });
+        document.addEventListener('mouseup', function() {
+            if (!dragging) return;
+            dragging = false;
+            win.style.transition = 'transform 0.4s ease';
+            win.style.transform = 'translate(0, 0) scale(1)';
+            setTimeout(function() {
+                win.style.zIndex = '';
+                win.style.transition = 'all 0.5s ease';
+            }, 400);
+        });
     });
 }
