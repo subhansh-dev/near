@@ -211,7 +211,9 @@ body {
 .nav-logo {
     color: var(--white);
     text-decoration: none;
-    font-size: 20px;
+    font-family: var(--font-display);
+    font-size: 14px;
+    letter-spacing: 4px;
     opacity: 0.6;
     transition: opacity 0.3s ease;
 }
@@ -608,6 +610,10 @@ body {
 .hf-10 { top: 5%; right: 18%; width: 240px; height: 310px; animation-delay: 1.2s; }
 .hf-11 { top: 50%; left: 35%; width: 180px; height: 230px; animation-delay: 1.5s; opacity: 0.4; }
 .hf-12 { top: 55%; right: 30%; width: 170px; height: 220px; animation-delay: 1.8s; opacity: 0.4; }
+.hf-13 { top: 38%; left: 28%; width: 200px; height: 260px; animation-delay: 0.4s; }
+.hf-14 { top: 42%; right: 25%; width: 190px; height: 245px; animation-delay: 0.7s; }
+.hf-15 { top: 55%; left: 40%; width: 175px; height: 225px; animation-delay: 1.0s; }
+.hf-16 { top: 48%; right: 35%; width: 185px; height: 240px; animation-delay: 1.3s; }
 
 @keyframes float-in {
     0% { opacity: 0; transform: scale(0.85) translateY(30px) skewY(1deg); filter: blur(4px); }
@@ -863,6 +869,130 @@ body {
 .dst-7 { top: 45%; right: 15%; width: 65px; height: 65px; }
 .dst-8 { top: 50%; left: 85%; width: 50px; height: 50px; }
 .dst-9 { bottom: 30%; right: 70%; width: 45px; height: 45px; }
+
+.spider-web {
+    position: absolute;
+    width: 80px;
+    height: 80px;
+    pointer-events: none;
+    opacity: 0.04;
+}
+
+.spider-web::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 1px;
+    background: currentColor;
+    top: 50%;
+    left: 0;
+    transform-origin: left center;
+}
+
+.spider-web::after {
+    content: '';
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    background: currentColor;
+    left: 50%;
+    top: 0;
+    transform-origin: top center;
+}
+
+.web-tl {
+    top: 0;
+    left: 0;
+    background: linear-gradient(135deg, currentColor 0%, transparent 40%);
+    border-top: 1px solid currentColor;
+    border-left: 1px solid currentColor;
+}
+
+.web-tl::before {
+    transform: rotate(45deg);
+    top: 0;
+    left: 0;
+}
+
+.web-tr {
+    top: 0;
+    right: 0;
+    background: linear-gradient(225deg, currentColor 0%, transparent 40%);
+    border-top: 1px solid currentColor;
+    border-right: 1px solid currentColor;
+}
+
+.web-tr::before {
+    transform: rotate(-45deg);
+    top: 0;
+    right: 0;
+    left: auto;
+    transform-origin: right center;
+}
+
+.web-bl {
+    bottom: 0;
+    left: 0;
+    background: linear-gradient(45deg, currentColor 0%, transparent 40%);
+    border-bottom: 1px solid currentColor;
+    border-left: 1px solid currentColor;
+}
+
+.web-bl::before {
+    transform: rotate(-45deg);
+    bottom: 0;
+    top: auto;
+    left: 0;
+}
+
+.web-br {
+    bottom: 0;
+    right: 0;
+    background: linear-gradient(315deg, currentColor 0%, transparent 40%);
+    border-bottom: 1px solid currentColor;
+    border-right: 1px solid currentColor;
+}
+
+.web-br::before {
+    transform: rotate(45deg);
+    bottom: 0;
+    top: auto;
+    right: 0;
+    left: auto;
+    transform-origin: right center;
+}
+
+.spider {
+    position: absolute;
+    font-size: 16px;
+    opacity: 0.06;
+    color: var(--white);
+}
+
+.sp-1 { top: 10%; right: 8%; }
+.sp-2 { bottom: 15%; left: 6%; transform: scaleX(-1); }
+.sp-3 { top: 12%; right: 10%; }
+.sp-4 { bottom: 10%; left: 8%; transform: scaleX(-1); }
+.sp-5 { top: 8%; left: 6%; }
+.sp-6 { bottom: 12%; right: 7%; transform: scaleX(-1); }
+.sp-7 { top: 10%; right: 5%; }
+.sp-8 { bottom: 8%; left: 5%; transform: scaleX(-1); }
+
+.hero-cross.hc-4 { top: 60%; right: 12%; }
+.hero-cross.hc-5 { bottom: 35%; left: 15%; }
+
+.dressing-cross.dc-1a { top: 15%; right: 8%; }
+.dressing-cross.dc-2a { bottom: 18%; left: 6%; }
+.dressing-cross.dc-3a { top: 12%; left: 10%; }
+.dressing-cross.dc-4a { bottom: 15%; right: 9%; }
+.dressing-cross.dc-5a { top: 18%; right: 7%; }
+.dressing-cross.dc-6a { bottom: 10%; left: 8%; }
+.dressing-cross.dc-7a { top: 14%; left: 9%; }
+.dressing-cross.dc-8a { bottom: 16%; right: 6%; }
+.dressing-cross.dc-9a { top: 16%; right: 8%; }
+.dressing-cross.dc-10a { bottom: 12%; left: 7%; }
+.dressing-cross.dc-11a { top: 10%; left: 6%; }
+.dressing-cross.dc-12a { bottom: 14%; right: 8%; }
 
 .section-divider {
     position: relative;
@@ -1818,6 +1948,10 @@ body {
     .hf-10 { display: none; }
     .hf-11 { display: none; }
     .hf-12 { display: none; }
+    .hf-13 { display: none; }
+    .hf-14 { display: none; }
+    .hf-15 { display: none; }
+    .hf-16 { display: none; }
 
     .hero-dressings,
     .section-dressings {
