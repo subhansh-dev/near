@@ -70,12 +70,7 @@ function initVisitorCounter() {
     var el = document.getElementById('visitor-count');
     if (!el) return;
     var stored = localStorage.getItem('subhansh-vc');
-    var count;
-    if (stored) {
-        count = parseInt(stored) + 1;
-    } else {
-        count = Math.floor(Math.random() * 9000) + 1000;
-    }
+    var count = stored ? parseInt(stored) + 1 : 1;
     localStorage.setItem('subhansh-vc', count.toString());
     el.textContent = count.toString().padStart(5, '0');
 }
@@ -440,40 +435,52 @@ function initPiano() {
             if (keyEl) keyEl.classList.remove('active');
         }
     });
+
+    document.addEventListener('visibilitychange', function() {
+        if (!audioCtx) return;
+        if (document.hidden) {
+            audioCtx.suspend();
+        } else {
+            audioCtx.resume();
+        }
+    });
 }
 
 function initHobbyDrag() {
     var windows = document.querySelectorAll('.hobby-window, .music-window, .hero-float');
+    var activeEl = null, startX, startY;
+
+    function onMove(e) {
+        if (!activeEl) return;
+        var dx = e.clientX - startX;
+        var dy = e.clientY - startY;
+        activeEl.style.transform = 'translate(' + dx + 'px, ' + dy + 'px) scale(1.05)';
+    }
+
+    function onUp() {
+        if (!activeEl) return;
+        activeEl.style.transition = 'transform 0.4s ease';
+        activeEl.style.transform = 'translate(0, 0) scale(1)';
+        var el = activeEl;
+        activeEl = null;
+        setTimeout(function() {
+            el.style.zIndex = '';
+            el.style.transition = 'all 0.5s ease';
+        }, 400);
+    }
+
+    document.addEventListener('mousemove', onMove);
+    document.addEventListener('mouseup', onUp);
+
     windows.forEach(function(win) {
-        var startX, startY, origX, origY, dragging = false;
         win.addEventListener('mousedown', function(e) {
             if (e.target.tagName === 'A') return;
-            dragging = true;
+            activeEl = win;
             startX = e.clientX;
             startY = e.clientY;
-            var rect = win.getBoundingClientRect();
-            var parentRect = win.parentElement.getBoundingClientRect();
-            origX = rect.left - parentRect.left;
-            origY = rect.top - parentRect.top;
             win.style.transition = 'none';
             win.style.zIndex = '20';
             e.preventDefault();
-        });
-        document.addEventListener('mousemove', function(e) {
-            if (!dragging) return;
-            var dx = e.clientX - startX;
-            var dy = e.clientY - startY;
-            win.style.transform = 'translate(' + dx + 'px, ' + dy + 'px) scale(1.05)';
-        });
-        document.addEventListener('mouseup', function() {
-            if (!dragging) return;
-            dragging = false;
-            win.style.transition = 'transform 0.4s ease';
-            win.style.transform = 'translate(0, 0) scale(1)';
-            setTimeout(function() {
-                win.style.zIndex = '';
-                win.style.transition = 'all 0.5s ease';
-            }, 400);
         });
     });
 }
